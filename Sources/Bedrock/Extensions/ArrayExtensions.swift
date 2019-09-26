@@ -1,6 +1,6 @@
 import Foundation
 
-extension Array {
+public extension Array {
     static func - (left: Array, right: Array) -> Array {
         return Array(left.dropFirst(right.count))
     }
