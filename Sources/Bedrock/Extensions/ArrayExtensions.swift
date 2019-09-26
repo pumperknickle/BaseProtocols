@@ -1,6 +1,6 @@
 import Foundation
 
-public extension Array {
+extension Array {
     static func - (left: Array, right: Array) -> Array {
         return Array(left.dropFirst(right.count))
     }
@@ -8,10 +8,16 @@ public extension Array {
 
 public extension Array where Element: Equatable {
     static func ~> (left: Array, right: Array) -> Array {
-        guard let leftFirst = left.first else { return [] }
-        guard let rightFirst = right.first else { return [] }
-        if leftFirst != rightFirst { return [] }
-        return [leftFirst] + (Array(left.dropFirst()) ~> Array(right.dropFirst()))
+        return Array(left.prefix(left.indexSame(right: right)))
+    }
+
+    func indexSame(right: Array) -> Int {
+        return indexSame(index: 0, right: right)
+    }
+
+    func indexSame(index: Int, right: Array) -> Int {
+        if self.count <= index || right.count <= index { return index }
+        return self[index] == right[index] ? indexSame(index: index + 1, right: right) : index
     }
 }
 
