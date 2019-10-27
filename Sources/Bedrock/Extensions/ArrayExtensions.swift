@@ -1,5 +1,7 @@
 import Foundation
 
+infix operator |||
+
 public extension Array {
     static func - (left: Array, right: Array) -> Array {
         return Array(left.dropFirst(right.count))
@@ -47,4 +49,10 @@ public extension Array where Element == Bool {
     func literal() -> String {
         return map { $0 ? "1" : "0" }.reduce("", +)
     }
+	
+	static func |||(lhs: [Bool], rhs: [Bool]) -> [Bool] {
+		guard let firstlhs = lhs.first else { return [] }
+		guard let firstrhs = rhs.first else { return lhs }
+		return [firstlhs != firstrhs] + (Array(lhs.dropFirst()) ||| Array(rhs.dropFirst()))
+	}
 }
