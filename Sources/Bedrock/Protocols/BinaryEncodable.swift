@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol BinaryEncodable: Equatable {
+public protocol BinaryEncodable: Equatable, Codable {
     func toBoolArray() -> [Bool]
     init?(raw: [Bool])
 }
