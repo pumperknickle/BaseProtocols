@@ -5,6 +5,15 @@ extension UInt256: Randomizable {
         return UInt256([UInt64.random(in: 0...UInt64.max), UInt64.random(in: 0...UInt64.max), UInt64.random(in: 0...UInt64.max), UInt64.random(in: 0...UInt64.max)])
     }
 }
+extension UInt256: DataEncodable {
+	public func toData() -> Data {
+        return Data(parts.toByteArray())
+    }
+	
+	public init?(data: Data) {
+		self = UInt256(data.toUInt64Array())
+	}
+}
 
 extension UInt256: BinaryEncodable {
     public func toBoolArray() -> [Bool] {
