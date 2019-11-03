@@ -10,6 +10,16 @@ public extension Data {
     }
 }
 
+extension Data: DataEncodable {
+	public func toData() -> Data {
+		return self
+	}
+	
+	public init?(data: Data) {
+		self = data
+	}
+}
+
 extension Data: BinaryEncodable {
     public init?(raw: [Bool]) {
         self.init(raw.toBytes())
