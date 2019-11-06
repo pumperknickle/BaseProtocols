@@ -8,7 +8,7 @@ extension UInt128: Randomizable {
 
 extension UInt128: DataEncodable {
 	public func toData() -> Data {
-        return Data(parts.toByteArray())
+		return Data(parts.map { $0.bytes }.reduce([], +))
     }
 	
 	public init?(data: Data) {
