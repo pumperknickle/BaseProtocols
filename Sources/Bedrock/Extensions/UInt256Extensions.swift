@@ -21,7 +21,7 @@ extension UInt256: BinaryEncodable {
     }
     
     public init?(raw: [Bool]) {
-        self = UInt256(raw.toBytes().toUInt64Array())
+		self = UInt256(Array(raw.toBytes().toUInt64Array().prefix(4)))
     }
 }
 
