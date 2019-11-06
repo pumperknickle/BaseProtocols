@@ -13,5 +13,12 @@ final class RGArraySpec: QuickSpec {
 			let otherCombinedArrays = boolArray2 ||| boolArray1
 			expect(otherCombinedArrays).to(equal([true, false, true, false, false]))
 		}
+		describe("UInt128") {
+			let random = UInt128.random()
+			it("should convert back and forth correctly") {
+				expect(UInt128(data: random.toData())).to(equal(random))
+				expect(UInt128(raw: random.toBoolArray())).to(equal(random))
+			}
+		}
 	}
 }
