@@ -25,3 +25,7 @@ extension UInt128: BinaryEncodable {
 		self = UInt128(Array(raw.toBytes().toUInt64Array().prefix(2)))
     }
 }
+
+extension UInt128: Fixed {
+    public static var bitWidth: Int { return 128 }
+}

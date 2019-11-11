@@ -35,6 +35,8 @@ extension UInt256: Stringable {
     }
 }
 
+extension UInt256: Fixed { }
+
 public extension UInt256 {
     func literal() -> String? {
         return toBoolArray().literal()
