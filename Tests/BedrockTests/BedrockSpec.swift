@@ -20,5 +20,11 @@ final class RGArraySpec: QuickSpec {
 				expect(UInt128(raw: random.toBoolArray())).to(equal(random))
 			}
 		}
+        describe("Data to bools conversions") {
+            let bools = [true, false, true]
+            it("should convert back and forth correctly") {
+                expect(Data.convert(bools).convert()).to(equal(bools))
+            }
+        }
 	}
 }

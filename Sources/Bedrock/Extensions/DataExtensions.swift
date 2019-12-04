@@ -8,6 +8,14 @@ public extension Data {
     func toString() -> String? {
         return String(bytes: self, encoding: .utf8)
     }
+    
+    static func convert(_ bools: [Bool]) -> Data {
+        return Data(bools.map { $0 ? UInt8(1) : UInt8(0) })
+    }
+    
+    func convert() -> [Bool] {
+        return self.map { $0 == UInt8(0) ? false : true }
+    }
 }
 
 extension Data: DataEncodable {
