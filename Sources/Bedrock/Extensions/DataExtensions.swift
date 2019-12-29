@@ -34,7 +34,7 @@ extension Data: BinaryEncodable {
     }
     
     public func toBoolArray() -> [Bool] {
-        return [UInt8](self).toBoolArray()
+        return [UInt8](self).map { $0.toBoolArray() }.reduce([], +)
     }
 }
 

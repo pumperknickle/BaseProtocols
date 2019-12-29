@@ -17,7 +17,7 @@ extension UInt256: DataEncodable {
 
 extension UInt256: BinaryEncodable {
     public func toBoolArray() -> [Bool] {
-        return parts.toByteArray().toBoolArray()
+        return parts.toByteArray().map { $0.toBoolArray() }.reduce([], +)
     }
     
     public init?(raw: [Bool]) {
