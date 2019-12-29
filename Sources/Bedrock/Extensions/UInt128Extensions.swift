@@ -18,7 +18,7 @@ extension UInt128: DataEncodable {
 
 extension UInt128: BinaryEncodable {
     public func toBoolArray() -> [Bool] {
-        return parts.toByteArray().toBoolArray()
+        return parts.toByteArray().map { $0.toBoolArray() }.reduce([], +)
     }
     
     public init?(raw: [Bool]) {
