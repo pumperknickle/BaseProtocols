@@ -10,15 +10,3 @@ public extension BinaryEncodable {
         return lhs.toBoolArray() == rhs.toBoolArray()
     }
 }
-
-public extension BinaryEncodable {
-    func toBoolArray() -> [Bool] {
-        return try! JSONEncoder().encode(self).toBoolArray()
-    }
-    
-    init?(raw: [Bool]) {
-        guard let data = Data(raw: raw) else { return nil }
-        guard let decoded = try? JSONDecoder().decode(Self.self, from: data) else { return nil }
-        self = decoded
-    }
-}
