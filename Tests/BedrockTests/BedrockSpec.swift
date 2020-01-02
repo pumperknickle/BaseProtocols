@@ -3,7 +3,7 @@ import Nimble
 import Quick
 @testable import Bedrock
 
-final class RGArraySpec: QuickSpec {
+final class BedrockSpec: QuickSpec {
 	override func spec() {
 		describe("||| operator two bool arrays") {
 			let boolArray1 = [true, false, false, true]
@@ -31,6 +31,22 @@ final class RGArraySpec: QuickSpec {
             let bools = [true, false, true]
             it("should convert back and forth correctly") {
                 expect(Data.convert(bools).convert()).to(equal(bools))
+            }
+        }
+        describe("binary array conversions") {
+            let elements = ["Hello", "hi", "howdy"]
+            let arrayOfBinaryEncodables: [String]? = elements.toString().toElements()
+            it("should convert back and forth correctly") {
+                expect(arrayOfBinaryEncodables).toNot(beNil())
+                expect(arrayOfBinaryEncodables!).to(equal(elements))
+            }
+        }
+        describe("data array conversions") {
+            let elements = ["Hello", "hi", "howdy"]
+            let arrayOfDataEncodables: [String]? = elements.toHexArray().decodeHex()
+            it("should convert back and forth correctly") {
+                expect(arrayOfDataEncodables).toNot(beNil())
+                expect(arrayOfDataEncodables!).to(equal(elements))
             }
         }
 	}

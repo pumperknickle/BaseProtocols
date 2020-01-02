@@ -1,12 +1,12 @@
 import Foundation
 
-extension String: BinaryEncodable {
-    public func toBoolArray() -> [Bool] {
-        return data(using: .utf8)!.toBoolArray()
+extension String: DataEncodable {
+    public func toData() -> Data {
+        return data(using: .utf8)!
     }
     
-    public init?(raw: [Bool]) {
-        guard let string = String(bytes: raw.toBytes(), encoding: .utf8) else { return nil }
+    public init?(data: Data) {
+        guard let string = String(bytes: data, encoding: .utf8) else { return nil }
         self = string
     }
 }
@@ -41,5 +41,16 @@ extension String: Stringable {
     
     public init?(stringValue: String) {
         self = stringValue
+    }
+}
+
+public extension StringProtocol {
+    var hexa: [UInt8] {
+        var startIndex = self.startIndex
+        return stride(from: 0, to: count, by: 2).compactMap { _ in
+            let endIndex = index(startIndex, offsetBy: 2, limitedBy: self.endIndex) ?? self.endIndex
+            defer { startIndex = endIndex }
+            return UInt8(self[startIndex..<endIndex], radix: 16)
+        }
     }
 }
