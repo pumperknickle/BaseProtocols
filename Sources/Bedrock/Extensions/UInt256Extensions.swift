@@ -37,6 +37,12 @@ extension UInt256: Stringable {
 
 extension UInt256: Fixed { }
 
+extension UInt256: IntConvertible {
+    public func convertToInt() -> Int {
+        return Int(truncatingIfNeeded: parts.last!)
+    }
+}
+
 public extension UInt256 {
     func literal() -> String? {
         return toBoolArray().literal()

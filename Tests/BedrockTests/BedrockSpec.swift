@@ -49,5 +49,14 @@ final class BedrockSpec: QuickSpec {
                 expect(arrayOfDataEncodables!).to(equal(elements))
             }
         }
+        
+        describe("Int convertible") {
+            let a = UInt256(10)
+            let b = UInt256(15)
+            let c = b - a
+            it("should resolve the result as int 5") {
+                expect(c.convertToInt()).to(equal(5))
+            }
+        }
 	}
 }
