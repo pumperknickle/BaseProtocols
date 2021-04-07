@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.2
 
 import PackageDescription
 
@@ -10,8 +10,8 @@ let package = Package(
             targets: ["Bedrock"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Quick/Quick.git", from: "2.1.0"),
-        .package(url: "https://github.com/Quick/Nimble.git", from: "8.0.2"),
+        .package(url: "https://github.com/Quick/Quick.git", from: "3.1.2"),
+        .package(url: "https://github.com/Quick/Nimble.git", from: "9.0.0"),
     ],
     targets: [
         .target(
