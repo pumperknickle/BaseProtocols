@@ -58,5 +58,14 @@ final class BedrockSpec: QuickSpec {
                 expect(c.convertToInt()).to(equal(5))
             }
         }
+        
+        describe("Index Same") {
+            let sliceA = ArraySlice([1,2,3])
+            let sliceB = ArraySlice([1,2,3,4])
+            it("should resolve to 3") {
+                expect(sliceA.indexSame(right: sliceB)).to(equal(3))
+                expect(Array(sliceA).indexSame(right: Array(sliceB))).to(equal(3))
+            }
+        }
 	}
 }

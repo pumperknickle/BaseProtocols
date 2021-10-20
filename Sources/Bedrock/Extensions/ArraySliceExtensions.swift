@@ -13,13 +13,15 @@ public extension ArraySlice where Element: Equatable {
         return ArraySlice(left.prefix(left.indexSame(right: right)))
     }
 
-    func indexSame(right: ArraySlice) -> Int {
-        return indexSame(index: 0, right: right)
-    }
-
-    func indexSame(index: Int, right: ArraySlice) -> Int {
-        if self.count <= index || right.count <= index { return index }
-        return self[index] == right[index] ? indexSame(index: index + 1, right: right) : index
+    func indexSame(right: ArraySlice, carry: Int = 0) -> Int {
+        guard let l = self.first else {
+            return carry
+        }
+        guard let r = right.first else {
+            return carry
+        }
+        if l != r { return carry }
+        return self.dropFirst().indexSame(right: right.dropFirst(), carry: carry + 1)
     }
 }
 
